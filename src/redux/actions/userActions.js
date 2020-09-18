@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { serverURL } from '../../utils/baseURL';
-import config from '../../utils/apiKey';
+// import config from '../../utils/apiKey';
 import { GET_ERRORS, QUERY_API, RESET_FETCHING_STATE } from './types';
 
 // Update UserData
@@ -34,8 +34,7 @@ export const queryAPI = (val) => async dispatch => {
 				type: GET_ERRORS,
 				payload: err
 			});
-		})
-		// .finally(() => {
-		// 	dispatch({ type: RESET_FETCHING_STATE });
-		// });
+		}).finally(() => {
+			dispatch({ type: RESET_FETCHING_STATE });
+		});
 }

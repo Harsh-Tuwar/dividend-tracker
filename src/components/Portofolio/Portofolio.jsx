@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { queryAPI } from '../../redux/actions/userActions';
+import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 
 class Portofolio extends Component {
 	runQueryForTicker = async (e) => {
@@ -64,7 +66,7 @@ class Portofolio extends Component {
 		return (
 			<div className="container">
 				<div className="row">
-					<div className="col s12">
+					<div>
 						<Link to="/dashboard" className="btn-flat waves-effect">
 							<i className="material-icons left">keyboard_backspace</i>Back to Dashboard
 						</Link>
@@ -74,41 +76,94 @@ class Portofolio extends Component {
 					</div>
 				</div>
 				<div className="row">
+					<Grid container spacing={1} justify="center">
+						<Grid item component={Card} xs={12} md={3} className="card div_card">
+							<CardContent>
+								<Typography color="textSecondary" className="card_header" gutterBottom>ALL TIME DIVIDEND</Typography>
+								<Typography variant="h5" className="div_amnt amnt_container">
+									<sup>$</sup>
+									<b className="amnt">
+										<CountUp start={0} end={50500} duration={2.5} separator="," />
+									</b>
+								</Typography>
+								<Typography variant="body2">Amount of Dividend Earned</Typography>
+							</CardContent>
+						</Grid>
+						<Grid item component={Card} xs={12} md={3} className="card invested_card">
+							<CardContent>
+								<Typography color="textSecondary" gutterBottom className="card_header">TOTAL INVESTMENT</Typography>
+								<Typography variant="h5" className="invested_amnt amnt_container">
+									<sup>$</sup>
+									<b className="amnt">
+										<CountUp start={0} end={50500} duration={2.5} separator="," />
+									</b>
+								</Typography>
+								<Typography variant="body2">Total amount invested</Typography>
+							</CardContent>
+						</Grid>
+						<Grid item component={Card} xs={12} md={3} className="card monthly_card">
+							<CardContent>
+								<Typography color="textSecondary" gutterBottom className="card_header">MONTHLY DIVIDEND</Typography>
+								<Typography variant="h5" className="monthly_amnt amnt_container">
+									<sup>$</sup>
+									<b className="amnt">
+										<CountUp start={0} end={50500} duration={2.5} separator="," />
+									</b>
+								</Typography>
+								<Typography variant="body2">Amount of Dividend Earned current month</Typography>
+							</CardContent>
+						</Grid>
+					</Grid>
+				</div>
+				<div className="row">
 					<div className="col s12">
-						<div className="search__container">
-							{/* <div className="row">
-								<form className="col s12">
-									<div className="row">
-										<div className="input-field col s12">
-											<input id="email" type="email" className="validate" onKeyUp={this.runQueryForTicker}/>
-											<label>Ticker Symbol</label>
-											<span className="helper-text" data-error="wrong" data-success="right">Type ticker symbol</span>
-										</div>
-									</div>
-								</form>
-							</div> */}
-							<div className="row">
-								<div className="col s12">
-									<div className="row">
-										<div className="input-field col s12">
-											<input type="text" id="autocomplete-input" className="autocomplete" onKeyUp={this.runQueryForTicker}/>
-											<label htmlFor="autocomplete-input" >Search Ticker Symbol</label>
-										</div>
-									</div>
-								</div>
-							</div>
+						<div className="input-field col s12">
+							<input type="text" id="autocomplete_input" className="autocomplete" onKeyUp={this.runQueryForTicker} />
+							<option>TEST</option>
+							<label htmlFor="autocomplete_input" >Search Ticker Symbol</label>
 						</div>
-						<br />
-						<div className="table__container">
-							<MUIDataTable
-								title={"Portfolio"}
-								data={data}
-								columns={columns}
-								options={options}
-							/>
-						</div>
+						{/* <button
+									style={{ borderRadius: "3px", letterSpacing: "1px", marginTop: "1px" }}
+									className="btn btn-large waves-effect waves-light hoverable blue accent-3 right col s2">
+									<i className="material-icons left">add</i>Add
+								</button> */}
 					</div>
 				</div>
+				<div className="row">
+						<div className="col s12">
+							<div className="search__container">
+								{/* <div className="row">
+									<form className="col s12">
+										<div className="row">
+											<div className="input-field col s12">
+												<input id="email" type="email" className="validate" onKeyUp={this.runQueryForTicker}/>
+												<label>Ticker Symbol</label>
+												<span className="helper-text" data-error="wrong" data-success="right">Type ticker symbol</span>
+											</div>
+										</div>
+									</form>
+								</div> */}
+								{/* <div className="row">
+									<div className="col s12">
+										<div className="row">
+											<div className="input-field col s12">
+												<input type="text" id="autocomplete_input" className="autocomplete" onKeyUp={this.runQueryForTicker}/>
+												<label htmlFor="autocomplete_input" >Search Ticker Symbol</label>
+											</div>
+										</div>
+									</div>
+								</div> */}
+							</div>
+							<div className="table__container">
+								<MUIDataTable
+									title={"Portfolio"}
+									data={data}
+									columns={columns}
+									options={options}
+								/>
+							</div>
+						</div>
+					</div>
 			</div>
 		);
 	}
@@ -121,8 +176,8 @@ Portofolio.propTypes = {
 
 const mapStateToProps = state => ({
 	auth: state.auth,
-	options: state.options,
-	fetchingData: state.fetchingData
+	options: state.user.options,
+	fetchingData: state.user.fetchingData
 });
 
 export default connect(
