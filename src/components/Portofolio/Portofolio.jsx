@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MUIDataTable from "mui-datatables";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { queryAPI } from '../../redux/actions/userActions';
 
 class Portofolio extends Component {
+	runQueryForTicker = async (e) => {
+		e.preventDefault();
+		await this.props.queryAPI(e.currentTarget.value);
+	}
+
 	render() {
 		const columns = [
 			{
@@ -39,8 +47,6 @@ class Portofolio extends Component {
 			},
 		];
 
-
-
 		const data = [
 			{ tickerSymbol: "Joe James", company: "Test Corp", holdings: "Yonkers", div: "NY" },
 			{ tickerSymbol: "John Walsh", company: "Test Corp", holdings: "Hartford", div: "CT" },
@@ -69,6 +75,30 @@ class Portofolio extends Component {
 				</div>
 				<div className="row">
 					<div className="col s12">
+						<div className="search__container">
+							{/* <div className="row">
+								<form className="col s12">
+									<div className="row">
+										<div className="input-field col s12">
+											<input id="email" type="email" className="validate" onKeyUp={this.runQueryForTicker}/>
+											<label>Ticker Symbol</label>
+											<span className="helper-text" data-error="wrong" data-success="right">Type ticker symbol</span>
+										</div>
+									</div>
+								</form>
+							</div> */}
+							<div className="row">
+								<div className="col s12">
+									<div className="row">
+										<div className="input-field col s12">
+											<input type="text" id="autocomplete-input" className="autocomplete" onKeyUp={this.runQueryForTicker}/>
+											<label htmlFor="autocomplete-input" >Search Ticker Symbol</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br />
 						<div className="table__container">
 							<MUIDataTable
 								title={"Portfolio"}
@@ -84,4 +114,18 @@ class Portofolio extends Component {
 	}
 }
 
-export default Portofolio;
+Portofolio.propTypes = {
+	auth: PropTypes.object.isRequired,
+	queryAPI: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+	auth: state.auth,
+	options: state.options,
+	fetchingData: state.fetchingData
+});
+
+export default connect(
+	mapStateToProps,
+	{ queryAPI }
+)(Portofolio);
