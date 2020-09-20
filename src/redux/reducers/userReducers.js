@@ -1,8 +1,9 @@
-import { QUERY_API, RESET_FETCHING_STATE } from '../actions/types';
+import { QUERY_API, RESET_FETCHING_STATE, ADD_NEW_HOLDING} from '../actions/types';
 
 const initialState = {
 	options: {},
-	fetchingData: true
+	fetchingData: true,
+	myHoldings: []
 }
 
 export default function (state = initialState, action) {
@@ -11,13 +12,19 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				fetchingData: false,
-				options: [...action.payload]
+				options: action.payload
 			};
 		
 		case RESET_FETCHING_STATE:
 			return {
 				...state,
 				fetchingData: true
+			}
+		
+		case ADD_NEW_HOLDING:
+			return {
+				...state,
+				myHoldings: [...state.myHoldings, action.payload]
 			}
 		
 		default:

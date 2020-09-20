@@ -2,8 +2,6 @@ import React from 'react';
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 
 const CardUI = (payload) => {
-	console.log(payload);
-
 	return (
 		<Card style={{ margin: '0 2%' }}>
 			<CardContent>

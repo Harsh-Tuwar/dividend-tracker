@@ -7,3 +7,4 @@ export const UPDATE_USER = "UPDATE_USER";
 
 export const QUERY_API = "QUERY_API";
 export const RESET_FETCHING_STATE = "RESET_FETCHING_STATE";
+export const ADD_NEW_HOLDING = "ADD_NEW_HOLDING";
