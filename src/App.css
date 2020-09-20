@@ -1,0 +1,77 @@
+.card {
+	margin: 0 2% 2% 0!important;
+}
+
+.portofolio_val_card {
+	border-top: 10px solid #29d58a;
+	border-bottom: 10px solid #29d58a;
+}
+
+.portofolio_amnt {
+	color: rgb(152, 187, 98);
+}
+
+.div_yield_card {
+	border-top: 10px solid rgb(73, 112, 142);
+	border-bottom: 10px solid rgb(73, 112, 142);
+}
+
+.div_yield_amnt {
+	color:rgb(52, 110, 152);
+}
+
+.yield_on_cost_card {
+	border-top: 10px solid rgb(196, 119, 24);
+	border-bottom: 10px solid rgb(196, 119, 24);
+}
+
+.yield_on_cost_amnt {
+	color: rgb(196, 119, 24);
+}
+
+.monthly_inc_card {
+	border-top: 10px solid rgb(19, 170, 181);
+	border-bottom: 10px solid rgb(6, 123, 125);
+}
+
+.monthly_inc_amnt {
+	color: cadetblue;
+}
+
+.amnt {
+	font-size: 30px;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.card_header { 
+	padding: 5px;
+	font-weight: bold !important;
+}
+
+.amnt_container {
+	padding: 10px 0px 10px 0px;
+}
+
+.paper_comp__new_holding {
+	padding: 3em;
+}
+
+.new_holding_header {
+	font-size: 25px;
+}
+
+.ticker_quantity {
+	width: 100%;
+}
+
+.comp_name {
+
+}
+
+.paper_comp__new_holding {
+	margin-bottom: 20px;
+}

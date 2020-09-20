@@ -17,6 +17,7 @@ import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 import MyAccount from './components/UserManagement/MyAccount';
 import Portofolio from './components/Portofolio/Portofolio';
+import NewHolding from './components/NewHolding/NewHolding';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -38,7 +39,7 @@ if (localStorage.jwtToken) {
     store.dispatch(logUserOut());
 
     // redire to login page
-    window.location.href = "./login";
+    window.location.href = "/login";
   }
 }
   
@@ -56,6 +57,7 @@ function App() {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/myaccount" component={MyAccount} />
             <PrivateRoute exact path="/portofolio" component={Portofolio} />
+            <PrivateRoute exact path="/portofolio/new-holding" component={NewHolding} />
           </Switch>
         </div>
       </Router>
