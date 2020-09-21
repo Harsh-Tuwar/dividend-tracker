@@ -19,6 +19,8 @@ import MyAccount from './components/UserManagement/MyAccount';
 import Portofolio from './components/Portofolio/Portofolio';
 import NewHolding from './components/NewHolding/NewHolding';
 
+require('dotenv').config();
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // set authtoken header auth
